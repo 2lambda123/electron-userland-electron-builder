@@ -7,7 +7,7 @@ import { HttpsProxyAgent } from "https-proxy-agent"
 export class NodeHttpExecutor extends HttpExecutor<ClientRequest> {
   // noinspection JSMethodCanBeStatic
   // noinspection JSUnusedGlobalSymbols
-  createRequest(options: any, callback: (response: any) => void): ClientRequest {
+  createRequest(options: https.RequestOptions, callback: (response: any) => void): ClientRequest {
     if (process.env["https_proxy"] !== undefined && options.protocol === "https:") {
       options.agent = new HttpsProxyAgent(process.env["https_proxy"])
     } else if (process.env["http_proxy"] !== undefined && options.protocol === "http:") {

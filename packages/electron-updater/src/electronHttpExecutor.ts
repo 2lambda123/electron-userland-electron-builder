@@ -48,11 +48,11 @@ export class ElectronHttpExecutor extends HttpExecutor<Electron.ClientRequest> {
     })
   }
 
-  createRequest(options: any, callback: (response: any) => void): Electron.ClientRequest {
+  createRequest(options: RequestOptions, callback: (response: any) => void): Electron.ClientRequest {
     // fix (node 7+) for making electron updater work when using AWS private buckets, check if headers contain Host property
     if (options.headers && options.headers.Host) {
       // set host value from headers.Host
-      options.host = options.headers.Host
+      (options as any).host = options.headers.Host
       // remove header property 'Host', if not removed causes net::ERR_INVALID_ARGUMENT exception
       delete options.headers.Host
     }
