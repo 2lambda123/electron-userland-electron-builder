@@ -149,12 +149,29 @@ test.ifEnv(process.env.KEYGEN_TOKEN)("Keygen upload", async () => {
 })
 
 test.ifEnv(process.env.BITBUCKET_TOKEN)("Bitbucket upload", async () => {
+  const timeout = 30000
   const publisher = new BitbucketPublisher(publishContext, {
     provider: "bitbucket",
     owner: "mike-m",
     slug: "electron-builder-test",
-    timeout: 30000,
+    timeout,
   } as BitbucketOptions)
-  const filename = await publisher.upload({ file: iconPath, arch: Arch.x64 })
+  const filename = await publisher.upload({ file: iconPath, arch: Arch.x64, timeout })
   await publisher.deleteRelease(filename)
+})
+
+test.ifEnv(process.env.BITBUCKET_TOKEN)("Bitbucket upload", async () => {
+  const timeout = 100
+  const publisher = new BitbucketPublisher(publishContext, {
+    provider: "bitbucket",
+    owner: "mike-m",
+    slug: "electron-builder-test",
+    timeout,
+  } as BitbucketOptions)
+  try {
+    const filename = await publisher.upload({ file: iconPath, arch: Arch.x64, timeout })
+    await publisher.deleteRelease(filename)
+  } catch (error) {
+    expect(error).toThrowError("Request timed out")
+  }
 })

@@ -82,11 +82,11 @@ export abstract class HttpPublisher extends Publisher {
         fileName,
         task.arch || Arch.x64,
         task.fileContent.length,
-        it => {
+        (request, reject) => {
           if (task.timeout) {
-            it.setTimeout(task.timeout)
+            request.setTimeout(task.timeout, () => reject(new Error("Request timed out")))
           }
-          return it.end(task.fileContent)
+          return request.end(task.fileContent)
         },
         task.file
       )
@@ -106,7 +106,7 @@ export abstract class HttpPublisher extends Publisher {
           progressBar.update(0)
         }
         if (task.timeout) {
-          request.setTimeout(task.timeout)
+          request.setTimeout(task.timeout, () => reject(new Error("Request timed out")))
         }
         return this.createReadStreamAndProgressBar(task.file, fileStat, progressBar, reject).pipe(request)
       },
