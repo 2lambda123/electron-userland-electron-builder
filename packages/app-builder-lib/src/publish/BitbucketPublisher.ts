@@ -49,7 +49,7 @@ export class BitbucketPublisher extends HttpPublisher {
         hostname: this.hostname,
         path: this.basePath,
         headers: form.getHeaders(),
-        timeout: this.info.timeout
+        timeout: this.info.timeout,
       }
       await httpExecutor.doApiRequest(configureRequestOptions(upload, this.auth, "POST"), this.context.cancellationToken, it => form.pipe(it))
       return fileName
@@ -60,7 +60,7 @@ export class BitbucketPublisher extends HttpPublisher {
     const req: RequestOptions = {
       hostname: this.hostname,
       path: `${this.basePath}/${filename}`,
-      timeout: this.info.timeout
+      timeout: this.info.timeout,
     }
     await httpExecutor.request(configureRequestOptions(req, this.auth, "DELETE"), this.context.cancellationToken)
   }

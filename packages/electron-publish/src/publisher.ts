@@ -78,12 +78,18 @@ export abstract class HttpPublisher extends Publisher {
     const fileName = (this.useSafeArtifactName ? task.safeArtifactName : null) || basename(task.file)
 
     if (task.fileContent != null) {
-      await this.doUpload(fileName, task.arch || Arch.x64, task.fileContent.length, it => {
-        if (task.timeout) {
-          it.setTimeout(task.timeout)
-        }
-        return it.end(task.fileContent)
-      }, task.file)
+      await this.doUpload(
+        fileName,
+        task.arch || Arch.x64,
+        task.fileContent.length,
+        it => {
+          if (task.timeout) {
+            it.setTimeout(task.timeout)
+          }
+          return it.end(task.fileContent)
+        },
+        task.file
+      )
       return
     }
 

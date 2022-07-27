@@ -46,7 +46,7 @@ export interface PublishConfiguration {
    * Any custom request headers
    */
   readonly requestHeaders?: OutgoingHttpHeaders
-  
+
   /**
    * Request timeout
    */

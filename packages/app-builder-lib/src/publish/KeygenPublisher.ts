@@ -139,7 +139,7 @@ export class KeygenPublisher extends HttpPublisher {
       headers: {
         "Content-Length": dataLength,
       },
-      timeout: this.info.timeout
+      timeout: this.info.timeout,
     }
 
     await httpExecutor.doApiRequest(configureRequestOptions(upload, null, "PUT"), this.context.cancellationToken, requestProcessor)
@@ -155,7 +155,7 @@ export class KeygenPublisher extends HttpPublisher {
         "Keygen-Version": "1.1",
         Prefer: "no-redirect",
       },
-      timeout: this.info.timeout
+      timeout: this.info.timeout,
     }
 
     const data: RecursivePartial<KeygenArtifact> = {
@@ -213,7 +213,7 @@ export class KeygenPublisher extends HttpPublisher {
         Accept: "application/vnd.api+json",
         "Keygen-Version": "1.1",
       },
-      timeout: this.info.timeout
+      timeout: this.info.timeout,
     }
 
     return parseJson(httpExecutor.request(configureRequestOptions(req, this.auth, "GET"), this.context.cancellationToken, null))
@@ -228,7 +228,7 @@ export class KeygenPublisher extends HttpPublisher {
         Accept: "application/vnd.api+json",
         "Keygen-Version": "1.1",
       },
-      timeout: this.info.timeout
+      timeout: this.info.timeout,
     }
 
     const data: RecursivePartial<KeygenRelease> = {
@@ -261,7 +261,7 @@ export class KeygenPublisher extends HttpPublisher {
         Accept: "application/vnd.api+json",
         "Keygen-Version": "1.1",
       },
-      timeout: this.info.timeout
+      timeout: this.info.timeout,
     }
     await httpExecutor.request(configureRequestOptions(req, this.auth, "DELETE"), this.context.cancellationToken)
   }
