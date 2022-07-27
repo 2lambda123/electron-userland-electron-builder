@@ -6390,35 +6390,6 @@
       "$ref": "#/definitions/ElectronDownloadOptions",
       "description": "The [electron-download](https://github.com/electron-userland/electron-download#usage) options."
     },
-    "electronFuses": {
-      "anyOf": [
-        {
-          "additionalProperties": false,
-          "properties": {
-            "0": {
-              "type": "boolean"
-            },
-            "2": {
-              "type": "boolean"
-            },
-            "3": {
-              "type": "boolean"
-            },
-            "4": {
-              "type": "boolean"
-            },
-            "5": {
-              "type": "boolean"
-            }
-          },
-          "type": "object"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "description": "*electron frameworks only* Electron fuses configuration."
-    },
     "electronUpdaterCompatibility": {
       "description": "The [electron-updater compatibility](/auto-update#compatibility) semver range.",
       "type": [
