@@ -1,4 +1,3 @@
-import { FuseConfig } from "@electron/fuses"
 import { Arch } from "builder-util"
 import { BeforeBuildContext, Target } from "./core"
 import { ElectronBrandingOptions, ElectronDownloadOptions } from "./electron/ElectronFramework"
@@ -191,11 +190,6 @@ export interface Configuration extends PlatformSpecificBuildOptions {
    * *libui-based frameworks only* The version of LaunchUI you are packaging for. Applicable for Windows only. Defaults to version suitable for used framework version.
    */
   readonly launchUiVersion?: boolean | string | null
-
-  /**
-   * *electron frameworks only* Electron fuses configuration. 
-   */
-  readonly electronFuses?: FuseConfig | null
 
   /**
    * The framework name. One of `electron`, `proton`, `libui`. Defaults to `electron`.
