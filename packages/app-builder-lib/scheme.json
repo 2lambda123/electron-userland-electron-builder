@@ -381,6 +381,10 @@
           "description": "Repository slug/name",
           "type": "string"
         },
+        "timeout": {
+          "description": "Request timeout",
+          "type": "number"
+        },
         "token": {
           "description": "The access token to support auto-update from private bitbucket repositories.",
           "type": [
@@ -477,6 +481,10 @@
         "requestHeaders": {
           "$ref": "#/definitions/OutgoingHttpHeaders",
           "description": "Any custom request headers"
+        },
+        "timeout": {
+          "description": "Request timeout",
+          "type": "number"
         },
         "updateProvider": {
           "description": "The Provider to provide UpdateInfo regarding available updates.  Required\nto use custom providers with electron-updater.",
@@ -1358,6 +1366,10 @@
           "$ref": "#/definitions/OutgoingHttpHeaders",
           "description": "Any custom request headers"
         },
+        "timeout": {
+          "description": "Request timeout",
+          "type": "number"
+        },
         "updaterCacheDirName": {
           "type": [
             "null",
@@ -1482,6 +1494,10 @@
           "$ref": "#/definitions/OutgoingHttpHeaders",
           "description": "Any custom request headers"
         },
+        "timeout": {
+          "description": "Request timeout",
+          "type": "number"
+        },
         "token": {
           "description": "The access token to support auto-update from private github repositories. Never specify it in the configuration files. Only for [setFeedURL](/auto-update#appupdatersetfeedurloptions).",
           "type": [
@@ -1572,6 +1588,10 @@
         "requestHeaders": {
           "$ref": "#/definitions/OutgoingHttpHeaders",
           "description": "Any custom request headers"
+        },
+        "timeout": {
+          "description": "Request timeout",
+          "type": "number"
         },
         "updaterCacheDirName": {
           "type": [
@@ -4876,6 +4896,10 @@
           "default": "STANDARD",
           "description": "The type of storage to use for the object."
         },
+        "timeout": {
+          "description": "Request timeout",
+          "type": "number"
+        },
         "updaterCacheDirName": {
           "type": [
             "null",
@@ -5324,6 +5348,10 @@
           "$ref": "#/definitions/OutgoingHttpHeaders",
           "description": "Any custom request headers"
         },
+        "timeout": {
+          "description": "Request timeout",
+          "type": "number"
+        },
         "updaterCacheDirName": {
           "type": [
             "null",
@@ -5408,6 +5436,10 @@
         "requestHeaders": {
           "$ref": "#/definitions/OutgoingHttpHeaders",
           "description": "Any custom request headers"
+        },
+        "timeout": {
+          "description": "Request timeout",
+          "type": "number"
         },
         "updaterCacheDirName": {
           "type": [
@@ -6357,6 +6389,35 @@
     "electronDownload": {
       "$ref": "#/definitions/ElectronDownloadOptions",
       "description": "The [electron-download](https://github.com/electron-userland/electron-download#usage) options."
+    },
+    "electronFuses": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "0": {
+              "type": "boolean"
+            },
+            "2": {
+              "type": "boolean"
+            },
+            "3": {
+              "type": "boolean"
+            },
+            "4": {
+              "type": "boolean"
+            },
+            "5": {
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "*electron frameworks only* Electron fuses configuration."
     },
     "electronUpdaterCompatibility": {
       "description": "The [electron-updater compatibility](/auto-update#compatibility) semver range.",

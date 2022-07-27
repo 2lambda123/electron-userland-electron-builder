@@ -143,6 +143,11 @@ export default class MacPackager extends PlatformPackager<MacConfiguration> {
           packager: this,
           electronPlatformName: platformName,
         }
+        
+        if (this.config.electronFuses) {
+          await this.addElectronFuses(packContext, this.config.electronFuses)
+        }
+
         await this.info.afterPack(packContext)
 
         await this.doSignAfterPack(outDir, appOutDir, platformName, arch, platformSpecificBuildOptions, targets)

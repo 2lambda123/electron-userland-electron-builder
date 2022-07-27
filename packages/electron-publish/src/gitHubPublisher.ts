@@ -191,6 +191,7 @@ export class GitHubPublisher extends HttpPublisher {
               "Content-Type": mime.getType(fileName) || "application/octet-stream",
               "Content-Length": dataLength,
             },
+            timeout: this.info.timeout
           },
           this.token
         ),

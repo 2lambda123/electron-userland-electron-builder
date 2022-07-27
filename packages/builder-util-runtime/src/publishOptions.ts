@@ -46,6 +46,11 @@ export interface PublishConfiguration {
    * Any custom request headers
    */
   readonly requestHeaders?: OutgoingHttpHeaders
+  
+  /**
+   * Request timeout
+   */
+  readonly timeout?: number
 }
 
 // https://github.com/electron-userland/electron-builder/issues/3261

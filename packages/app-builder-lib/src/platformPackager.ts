@@ -1,3 +1,4 @@
+import { flipFuses, FuseConfig } from "@electron/fuses"
 import BluebirdPromise from "bluebird-lst"
 import { Arch, asArray, AsyncTaskManager, debug, DebugLogger, deepAssign, getArchSuffix, InvalidConfigurationError, isEmptyOrSpaces, log, isEnvTrue } from "builder-util"
 import { defaultArchFromString, getArtifactArchName } from "builder-util/out/arch"
@@ -302,6 +303,10 @@ export abstract class PlatformPackager<DC extends PlatformSpecificBuildOptions> 
       return
     }
 
+    if (this.config.electronFuses) {
+      await this.addElectronFuses(packContext, this.config.electronFuses)
+    }
+
     await this.info.afterPack(packContext)
 
     if (framework.afterPack != null) {
@@ -314,6 +319,23 @@ export abstract class PlatformPackager<DC extends PlatformSpecificBuildOptions> 
       await this.doSignAfterPack(outDir, appOutDir, platformName, arch, platformSpecificBuildOptions, targets)
     }
   }
+
+  protected async addElectronFuses(context: AfterPackContext, config: FuseConfig) {
+    const { appOutDir, packager: { appInfo }, electronPlatformName, arch } = context
+    const ext = {
+      darwin: '.app',
+      win32: '.exe',
+      linux: [''],
+    }[electronPlatformName];
+  
+    const electronBinaryPath = path.join(appOutDir, `${appInfo.productFilename}${ext}`);
+    console.log('Flipping fuses for: ', electronBinaryPath)
+    log.info({ electronBinaryPath, arch }, "Flipping fuses")
+    await flipFuses(electronBinaryPath, {
+      resetAdHocDarwinSignature: electronPlatformName === 'darwin' && arch === Arch.arm64, // necessary for Apple Silicon
+      ...config
+    });
+  };
 
   protected async doSignAfterPack(outDir: string, appOutDir: string, platformName: ElectronPlatformName, arch: Arch, platformSpecificBuildOptions: DC, targets: Array<Target>) {
     const asarOptions = await this.computeAsarOptions(platformSpecificBuildOptions)
