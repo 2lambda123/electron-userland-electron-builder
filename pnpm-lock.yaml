@@ -81,8 +81,8 @@ importers:
         specifier: 2.8.0
         version: 2.8.0
       replace-in-file:
-        specifier: 6.2.0
-        version: 6.2.0
+        specifier: 6.3.5
+        version: 6.3.5
       source-map-support:
         specifier: 0.5.21
         version: 0.5.21
@@ -8811,14 +8811,14 @@ packages:
     engines: {node: '>=0.10'}
     dev: true
 
-  /replace-in-file@6.2.0:
-    resolution: {integrity: sha512-Im2AF9G/qgkYneOc9QwWwUS/efyyonTUBvzXS2VXuxPawE5yQIjT/e6x4CTijO0Quq48lfAujuo+S89RR2TP2Q==}
+  /replace-in-file@6.3.5:
+    resolution: {integrity: sha512-arB9d3ENdKva2fxRnSjwBEXfK1npgyci7ZZuwysgAp7ORjHSyxz6oqIjTEv8R0Ydl4Ll7uOAZXL4vbkhGIizCg==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
       chalk: 4.1.2
       glob: 7.2.3
-      yargs: 16.2.0
+      yargs: 17.7.2
     dev: true
 
   /require-directory@2.1.1:
